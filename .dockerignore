@@ -1,0 +1,10 @@
+node_modules
+dist
+.angular
+.vscode
+.git
+.gitignore
+Dockerfile
+ng-serve*.log
+npm-debug.log
+README.md
