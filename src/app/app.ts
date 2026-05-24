@@ -34,7 +34,7 @@ export class App {
       title: 'Mobile Fuel Supply',
       text: 'Convenient mobile fuel supply for businesses that require dependable on-site refuelling.',
       tag: 'Mobile',
-      image: '/images/MobileFuel.jpeg',
+      image: '/images/diesel.jpeg',
     },
     {
       title: 'Industrial & Construction Fuel Solutions',
@@ -56,7 +56,7 @@ export class App {
   gallery = [
     { src: '/images/delivery.jpeg', alt: 'JUBEECKE fuel delivery vehicle', label: 'Delivery Fleet' },
     { src: '/images/fillup.jpeg', alt: 'Diesel refilling service on site', label: 'On-Site Refilling' },
-    { src: '/images/diesel.jpeg', alt: 'Diesel supply equipment', label: 'Diesel Supply' },
+    { src: '/images/MobileFuel.jpeg', alt: 'Mobile fuel supply vehicle', label: 'Mobile Fuel Supply' },
     { src: '/images/machinery.jpeg', alt: 'Industrial machinery fuel solution', label: 'Industrial Sites' },
   ];
 
