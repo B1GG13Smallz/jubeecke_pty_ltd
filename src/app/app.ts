@@ -28,19 +28,19 @@ export class App {
       title: 'Diesel Bowser Rental',
       text: 'Short-term and long-term bowser rental solutions for construction, industrial and fleet operations.',
       tag: 'Rental',
-      image: '',
+      image: '/images/bowserrental.jpeg',
     },
     {
       title: 'Mobile Fuel Supply',
       text: 'Convenient mobile fuel supply for businesses that require dependable on-site refuelling.',
       tag: 'Mobile',
-      image: '',
+      image: '/images/MobileFuel.jpeg',
     },
     {
       title: 'Industrial & Construction Fuel Solutions',
       text: 'Fuel solutions built for construction sites, mining operations, agriculture, transport and industrial businesses.',
       tag: 'Industrial',
-      image: '',
+      image: '/images/industrial.jpeg',
     },
   ];
 
