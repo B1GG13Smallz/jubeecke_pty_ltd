@@ -58,7 +58,8 @@
       </div>
 
       <div class="service-grid">
-        <article class="service-card" *ngFor="let service of services">
+        <article class="service-card" [class.service-card--featured]="service.image" *ngFor="let service of services">
+          <div *ngIf="service.image" class="service-card__bg" [style.backgroundImage]="'url(' + service.image + ')'"></div>
           <span>{{ service.tag }}</span>
           <h3>{{ service.title }}</h3>
           <p>{{ service.text }}</p>

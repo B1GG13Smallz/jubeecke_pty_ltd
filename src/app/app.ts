@@ -22,21 +22,25 @@ export class App {
       title: 'On-Site Diesel Delivery',
       text: 'Fast and reliable diesel refilling delivered directly to your site when you need it most.',
       tag: 'Delivery',
+      image: '/images/service.jpeg',
     },
     {
       title: 'Diesel Bowser Rental',
       text: 'Short-term and long-term bowser rental solutions for construction, industrial and fleet operations.',
       tag: 'Rental',
+      image: '',
     },
     {
       title: 'Mobile Fuel Supply',
       text: 'Convenient mobile fuel supply for businesses that require dependable on-site refuelling.',
       tag: 'Mobile',
+      image: '',
     },
     {
       title: 'Industrial & Construction Fuel Solutions',
       text: 'Fuel solutions built for construction sites, mining operations, agriculture, transport and industrial businesses.',
       tag: 'Industrial',
+      image: '',
     },
   ];
 

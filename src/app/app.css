@@ -316,6 +316,61 @@ p {
   text-transform: uppercase;
 }
 
+/* Featured card — On-Site Diesel Delivery */
+.service-card--featured {
+  position: relative;
+  overflow: hidden;
+  background: #0d0d0d;
+  border-color: rgba(242, 183, 5, 0.35);
+  min-height: 320px;
+}
+
+.service-card__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 600ms ease;
+}
+
+.service-card__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    170deg,
+    rgba(0, 0, 0, 0.38) 0%,
+    rgba(0, 0, 0, 0.78) 100%
+  );
+}
+
+.service-card--featured:hover {
+  transform: translateY(-6px);
+  border-color: rgba(242, 183, 5, 0.65);
+  background: #0d0d0d;
+}
+
+.service-card--featured:hover .service-card__bg {
+  transform: scale(1.06);
+}
+
+.service-card--featured span,
+.service-card--featured h3,
+.service-card--featured p {
+  position: relative;
+  z-index: 1;
+}
+
+.service-card--featured h3 {
+  color: #ffffff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+}
+
+.service-card--featured p {
+  color: rgba(255, 255, 255, 0.82);
+}
+
 .split-section,
 .contact-section {
   background: #0d0d0d;
