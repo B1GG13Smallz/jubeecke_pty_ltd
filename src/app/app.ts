@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +9,9 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './app.css',
 })
 export class App {
+  readonly businessEmail = 'jubeeke.fuel@gmail.com';
+  readonly phonePattern = '^[+0-9][0-9\\s()\\-]{6,}$';
+
   navItems = [
     { label: 'Home', href: '#home' },
     { label: 'Services', href: '#services' },
@@ -70,23 +73,32 @@ export class App {
   };
 
   submitted = false;
+  submitAttempted = false;
 
-  submitEnquiry(): void {
-    const subject = encodeURIComponent(`Fuel enquiry from ${this.formData.fullName || 'website visitor'}`);
+  submitEnquiry(enquiryForm: NgForm): void {
+    this.submitAttempted = true;
+    this.submitted = false;
+
+    if (enquiryForm.invalid) {
+      enquiryForm.control.markAllAsTouched();
+      return;
+    }
+
+    const subject = encodeURIComponent(`Fuel enquiry from ${this.formData.fullName.trim()}`);
     const body = encodeURIComponent(
       [
-        `Full Name: ${this.formData.fullName}`,
-        `Company Name: ${this.formData.companyName}`,
-        `Phone Number: ${this.formData.phone}`,
-        `Email Address: ${this.formData.email}`,
-        `Service Needed: ${this.formData.service}`,
+        `Full Name: ${this.formData.fullName.trim()}`,
+        `Company Name: ${this.formData.companyName.trim()}`,
+        `Phone Number: ${this.formData.phone.trim()}`,
+        `Email Address: ${this.formData.email.trim()}`,
+        `Service Needed: ${this.formData.service.trim()}`,
         '',
         'Message:',
-        this.formData.message,
+        this.formData.message.trim(),
       ].join('\n'),
     );
 
-    window.location.href = `mailto:jubeeke.fuel@gmail.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:${this.businessEmail}?subject=${subject}&body=${body}`;
     this.submitted = true;
   }
 }

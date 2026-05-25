@@ -559,6 +559,18 @@ textarea:focus {
   box-shadow: 0 0 0 4px rgba(242, 183, 5, 0.12);
 }
 
+.field-invalid {
+  border-color: #ff6b5f;
+  background: rgba(255, 107, 95, 0.08);
+}
+
+.field-error {
+  color: #ffb1aa;
+  font-size: 0.86rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
 .form-note {
   grid-column: 1 / -1;
   margin: -4px 0 0;

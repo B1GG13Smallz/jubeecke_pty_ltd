@@ -40,7 +40,7 @@
         <div class="contact-strip">
           <a href="tel:+27658554012">065 855 4012</a>
           <a href="tel:+27627995079">062 799 5079</a>
-          <a href="mailto:jubeeke.fuel@gmail.com">jubeeke.fuel&#64;gmail.com</a>
+          <a [href]="'mailto:' + businessEmail">jubeeke.fuel&#64;gmail.com</a>
         </div>
       </aside>
     </div>
@@ -115,7 +115,7 @@
       <div class="cta-actions">
         <a class="btn btn-primary" href="tel:+27658554012">Call 065 855 4012</a>
         <a class="btn btn-outline" href="https://wa.me/27658554012" target="_blank" rel="noopener">WhatsApp Us</a>
-        <a class="btn btn-dark" href="mailto:jubeeke.fuel@gmail.com">Send Email</a>
+        <a class="btn btn-dark" [href]="'mailto:' + businessEmail">Send Email</a>
       </div>
     </div>
   </section>
@@ -133,50 +133,116 @@
         <div class="contact-card">
           <a href="tel:+27658554012">065 855 4012</a>
           <a href="tel:+27627995079">062 799 5079</a>
-          <a href="mailto:jubeeke.fuel@gmail.com">jubeeke.fuel&#64;gmail.com</a>
+          <a [href]="'mailto:' + businessEmail">jubeeke.fuel&#64;gmail.com</a>
           <span>Gauteng and surrounding areas within 300km</span>
         </div>
       </div>
 
-      <form class="enquiry-form" #enquiryForm="ngForm" (ngSubmit)="enquiryForm.valid && submitEnquiry()">
+      <form class="enquiry-form" #enquiryForm="ngForm" (ngSubmit)="submitEnquiry(enquiryForm)" novalidate>
         <label>
           Full Name
-          <input name="fullName" [(ngModel)]="formData.fullName" required autocomplete="name" />
+          <input
+            name="fullName"
+            #fullName="ngModel"
+            [(ngModel)]="formData.fullName"
+            required
+            minlength="2"
+            autocomplete="name"
+            [class.field-invalid]="fullName.invalid && (fullName.touched || submitAttempted)"
+          />
+          <span class="field-error" *ngIf="fullName.invalid && (fullName.touched || submitAttempted)">
+            Please enter your full name.
+          </span>
         </label>
 
         <label>
           Company Name
-          <input name="companyName" [(ngModel)]="formData.companyName" autocomplete="organization" />
+          <input
+            name="companyName"
+            #companyName="ngModel"
+            [(ngModel)]="formData.companyName"
+            required
+            autocomplete="organization"
+            [class.field-invalid]="companyName.invalid && (companyName.touched || submitAttempted)"
+          />
+          <span class="field-error" *ngIf="companyName.invalid && (companyName.touched || submitAttempted)">
+            Please enter your company name.
+          </span>
         </label>
 
         <label>
           Phone Number
-          <input name="phone" [(ngModel)]="formData.phone" required autocomplete="tel" />
+          <input
+            name="phone"
+            #phone="ngModel"
+            type="tel"
+            [(ngModel)]="formData.phone"
+            required
+            [pattern]="phonePattern"
+            autocomplete="tel"
+            [class.field-invalid]="phone.invalid && (phone.touched || submitAttempted)"
+          />
+          <span class="field-error" *ngIf="phone.invalid && (phone.touched || submitAttempted)">
+            Please enter a valid phone number.
+          </span>
         </label>
 
         <label>
           Email Address
-          <input name="email" type="email" [(ngModel)]="formData.email" autocomplete="email" />
+          <input
+            name="email"
+            #email="ngModel"
+            type="email"
+            [(ngModel)]="formData.email"
+            required
+            email
+            autocomplete="email"
+            [class.field-invalid]="email.invalid && (email.touched || submitAttempted)"
+          />
+          <span class="field-error" *ngIf="email.invalid && (email.touched || submitAttempted)">
+            Please enter a valid email address.
+          </span>
         </label>
 
         <label class="wide">
           Service Needed
-          <select name="service" [(ngModel)]="formData.service">
+          <select
+            name="service"
+            #service="ngModel"
+            [(ngModel)]="formData.service"
+            required
+            [class.field-invalid]="service.invalid && (service.touched || submitAttempted)"
+          >
             <option>Diesel Refilling</option>
             <option>Diesel Bowser Rental</option>
             <option>Mobile Fuel Supply</option>
             <option>Construction Fuel Solution</option>
             <option>Other</option>
           </select>
+          <span class="field-error" *ngIf="service.invalid && (service.touched || submitAttempted)">
+            Please choose the service needed.
+          </span>
         </label>
 
         <label class="wide">
           Message
-          <textarea name="message" [(ngModel)]="formData.message" rows="5"></textarea>
+          <textarea
+            name="message"
+            #message="ngModel"
+            [(ngModel)]="formData.message"
+            rows="5"
+            required
+            [class.field-invalid]="message.invalid && (message.touched || submitAttempted)"
+          ></textarea>
+          <span class="field-error" *ngIf="message.invalid && (message.touched || submitAttempted)">
+            Please enter your message.
+          </span>
         </label>
 
         <button class="btn btn-primary wide" type="submit">Submit Enquiry</button>
-        <p class="form-note" *ngIf="submitted">Your email app has been opened with the enquiry details.</p>
+        <p class="form-note" *ngIf="submitted">
+          Your enquiry has been successfully delivered to your email app. Please proofread and send it.
+        </p>
       </form>
     </div>
   </section>
