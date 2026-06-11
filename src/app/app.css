@@ -42,7 +42,8 @@ nav {
 
 nav a,
 .contact-strip a,
-.contact-card a {
+.contact-card a,
+.email-link {
   color: rgba(255, 255, 255, 0.78);
   text-decoration: none;
   transition:
@@ -52,8 +53,19 @@ nav a,
 
 nav a:hover,
 .contact-strip a:hover,
-.contact-card a:hover {
+.contact-card a:hover,
+.email-link:hover {
   color: #f2b705;
+}
+
+.email-link {
+  width: fit-content;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
 }
 
 .header-call {
@@ -578,6 +590,166 @@ textarea:focus {
   font-weight: 800;
 }
 
+.email-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(14px);
+}
+
+.email-modal {
+  width: min(640px, 100%);
+  max-height: min(760px, calc(100svh - 36px));
+  overflow-y: auto;
+  border: 1px solid rgba(242, 183, 5, 0.36);
+  background:
+    linear-gradient(145deg, rgba(27, 27, 27, 0.98), rgba(8, 8, 8, 0.96)),
+    #101010;
+  box-shadow: 0 34px 100px rgba(0, 0, 0, 0.62);
+  padding: clamp(22px, 4vw, 34px);
+}
+
+.email-modal-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+.email-modal-header h2 {
+  margin-bottom: 0;
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+}
+
+.email-modal-close {
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    color 180ms ease;
+}
+
+.email-modal-close:hover {
+  border-color: rgba(242, 183, 5, 0.72);
+  background: rgba(242, 183, 5, 0.12);
+  color: #f2b705;
+}
+
+.email-message-field {
+  margin-bottom: 18px;
+}
+
+.attachment-dropzone {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 150px;
+  margin-top: 8px;
+  padding: 24px;
+  border: 1px dashed rgba(242, 183, 5, 0.66);
+  background:
+    linear-gradient(180deg, rgba(242, 183, 5, 0.12), rgba(255, 255, 255, 0.035)),
+    rgba(255, 255, 255, 0.03);
+  color: #ffffff;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.attachment-dropzone:hover {
+  border-color: #f2b705;
+  background:
+    linear-gradient(180deg, rgba(242, 183, 5, 0.18), rgba(255, 255, 255, 0.045)),
+    rgba(255, 255, 255, 0.04);
+  transform: translateY(-2px);
+}
+
+.attachment-dropzone input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.attachment-dropzone strong {
+  color: #f7d879;
+  font-size: 1.05rem;
+}
+
+.attachment-dropzone span {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.attachment-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.attachment-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.84);
+  font-weight: 800;
+}
+
+.attachment-item span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.attachment-item button {
+  border: 0;
+  background: transparent;
+  color: #f7d879;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.email-dialog-error {
+  margin: 14px 0 0;
+  color: #ffb1aa;
+  font-weight: 800;
+}
+
+.email-dialog-note {
+  margin: 14px 0 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.email-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+}
+
 footer {
   padding: 36px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -653,14 +825,23 @@ footer {
 
   .hero-actions,
   .cta-actions,
+  .email-modal-actions,
   .btn {
     width: 100%;
+  }
+
+  .email-modal-actions {
+    flex-direction: column-reverse;
   }
 
   .service-grid,
   .gallery-grid,
   .enquiry-form {
     grid-template-columns: 1fr;
+  }
+
+  .email-modal {
+    padding: 22px;
   }
 
   figure,
